@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Programmes 2025 - Cycle 2 | Français et Mathématiques</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #667085;
+      --soft: #eef4ff;
+      --paper: #f4f7fb;
+      --panel: rgba(255, 255, 255, .68);
+      --panel-strong: rgba(255, 255, 255, .84);
+      --line: rgba(121, 139, 169, .28);
+      --blue: #2f6fed;
+      --cyan: #18a6b8;
+      --green: #1f8a70;
+      --amber: #b96f16;
+      --rose: #b84072;
+      --shadow: 0 24px 70px rgba(35, 48, 76, .16);
+      --small-shadow: 0 10px 30px rgba(35, 48, 76, .11);
+      --blur: blur(22px) saturate(150%);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 4%, rgba(47, 111, 237, .25), transparent 27rem),
+        radial-gradient(circle at 86% 8%, rgba(24, 166, 184, .19), transparent 25rem),
+        radial-gradient(circle at 74% 86%, rgba(184, 64, 114, .15), transparent 24rem),
+        linear-gradient(135deg, #f8fbff 0%, #eef4f9 52%, #f9fbff 100%);
+      background-attachment: fixed;
+      letter-spacing: 0;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .42;
+      background-image:
+        linear-gradient(rgba(23, 32, 51, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 32, 51, .04) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(180deg, #000 0%, transparent 75%);
+    }
+    header {
+      padding: 34px clamp(18px, 4vw, 52px) 22px;
+    }
+    .hero-shell {
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, .68);
+      border-radius: 28px;
+      padding: clamp(22px, 4vw, 42px);
+      background: linear-gradient(135deg, rgba(255,255,255,.76), rgba(255,255,255,.44));
+      box-shadow: var(--shadow);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+    }
+    .hero-shell::after {
+      content: "";
+      position: absolute;
+      right: clamp(18px, 6vw, 90px);
+      top: -110px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: conic-gradient(from 130deg, rgba(47,111,237,.45), rgba(24,166,184,.22), rgba(184,64,114,.27), rgba(47,111,237,.45));
+      filter: blur(32px);
+      opacity: .55;
+    }
+    h1 {
+      position: relative;
+      margin: 0 0 12px;
+      max-width: 840px;
+      font-size: clamp(2.35rem, 5vw, 5.15rem);
+      line-height: .94;
+      letter-spacing: 0;
+    }
+    .subhead {
+      position: relative;
+      max-width: 980px;
+      color: #475467;
+      font-size: clamp(.98rem, 1.5vw, 1.12rem);
+      line-height: 1.65;
+    }
+    .stats {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .pill, .tag {
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: 999px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+    }
+    .pill {
+      background: rgba(255,255,255,.62);
+      padding: 8px 12px;
+      font-size: .88rem;
+      font-weight: 760;
+      color: #344054;
+    }
+    main {
+      display: grid;
+      grid-template-columns: minmax(280px, 360px) 1fr;
+      gap: 24px;
+      padding: 0 clamp(18px, 4vw, 52px) 44px;
+      align-items: start;
+    }
+    aside {
+      position: sticky;
+      top: 16px;
+      display: grid;
+      gap: 16px;
+    }
+    .panel, .card, .overview-card {
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, .72);
+      box-shadow: var(--small-shadow);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+    }
+    .panel {
+      padding: 16px;
+      border-radius: 22px;
+    }
+    .panel-title {
+      display: block;
+      margin-bottom: 12px;
+      font-size: .82rem;
+      font-weight: 850;
+      color: #344054;
+      text-transform: uppercase;
+    }
+    .view-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      padding: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(255,255,255,.72);
+    }
+    .view-switch button {
+      min-height: 38px;
+      border-radius: 999px;
+      border: 0;
+      background: transparent;
+      color: #475467;
+      font-size: .88rem;
+      font-weight: 850;
+      box-shadow: none;
+    }
+    .view-switch button.active {
+      color: #fff;
+      background: linear-gradient(135deg, #2f6fed, #18a6b8);
+      box-shadow: 0 9px 22px rgba(47,111,237,.25);
+    }
+    .filters {
+      display: grid;
+      gap: 12px;
+    }
+    label {
+      display: grid;
+      gap: 6px;
+      font-size: .72rem;
+      font-weight: 850;
+      color: #526070;
+      text-transform: uppercase;
+    }
+    select, input {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid rgba(121, 139, 169, .3);
+      border-radius: 14px;
+      padding: 9px 12px;
+      color: var(--ink);
+      background: rgba(255,255,255,.72);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+      font: inherit;
+      outline: none;
+    }
+    select:focus, input:focus {
+      border-color: rgba(47,111,237,.56);
+      box-shadow: 0 0 0 4px rgba(47,111,237,.13);
+    }
+    button {
+      min-height: 44px;
+      border: 1px solid rgba(121, 139, 169, .28);
+      border-radius: 14px;
+      padding: 9px 12px;
+      background: rgba(255,255,255,.7);
+      color: var(--ink);
+      font-weight: 820;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.65);
+    }
+    button:hover { transform: translateY(-1px); background: rgba(255,255,255,.9); }
+    .primary-action {
+      color: #fff;
+      border: 0;
+      background: linear-gradient(135deg, #2f6fed, #18a6b8);
+      box-shadow: 0 14px 28px rgba(47,111,237,.24);
+    }
+    .tree {
+      max-height: calc(100vh - 390px);
+      overflow: auto;
+      padding-right: 4px;
+    }
+    details {
+      border-top: 1px solid rgba(121,139,169,.18);
+      padding: 8px 0;
+    }
+    details:first-child { border-top: 0; }
+    summary {
+      cursor: pointer;
+      font-weight: 860;
+      line-height: 1.35;
+    }
+    .tree button {
+      width: 100%;
+      min-height: 0;
+      margin: 5px 0 0;
+      padding: 8px 10px;
+      text-align: left;
+      font-size: .86rem;
+      font-weight: 680;
+      background: rgba(255,255,255,.54);
+    }
+    .toolbar {
+      position: sticky;
+      top: 12px;
+      z-index: 5;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding: 10px;
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: 20px;
+      background: rgba(255,255,255,.62);
+      box-shadow: var(--small-shadow);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+    }
+    .count {
+      color: #475467;
+      font-weight: 820;
+      padding-left: 4px;
+    }
+    .results {
+      display: grid;
+      gap: 16px;
+    }
+    .card {
+      overflow: hidden;
+      position: relative;
+      border-radius: 24px;
+      padding: 20px;
+    }
+    .card::before, .overview-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan), var(--rose));
+      opacity: .85;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 13px;
+    }
+    .tag {
+      padding: 5px 9px;
+      font-size: .75rem;
+      font-weight: 850;
+      color: #fff;
+      background: var(--blue);
+    }
+    .tag.math { background: var(--green); }
+    .tag.grade { background: var(--amber); }
+    .tag.domain { background: var(--rose); }
+    h2 {
+      margin: 0 0 11px;
+      font-size: clamp(1.28rem, 2vw, 1.8rem);
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 0 0 9px;
+      font-size: 1rem;
+      letter-spacing: 0;
+    }
+    .specifics {
+      display: grid;
+      gap: 8px;
+      margin: 14px 0;
+      padding: 0;
+      list-style: none;
+    }
+    .specifics li {
+      border: 1px solid rgba(143,180,223,.35);
+      border-left: 4px solid #6fa1e6;
+      background: rgba(244,248,252,.72);
+      padding: 10px 11px;
+      border-radius: 12px;
+      line-height: 1.45;
+    }
+    .progression {
+      margin-top: 15px;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(121,139,169,.2);
+    }
+    .progression-grid, .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .level-panel {
+      min-width: 0;
+      border: 1px solid rgba(121,139,169,.2);
+      border-radius: 16px;
+      padding: 11px;
+      background: rgba(255,255,255,.58);
+    }
+    .level-panel.current {
+      border-color: rgba(47,111,237,.5);
+      box-shadow: 0 0 0 4px rgba(47,111,237,.09);
+    }
+    .level-panel h4 {
+      margin: 0 0 8px;
+      font-size: .84rem;
+      color: #344054;
+    }
+    .mini-list {
+      margin: 0;
+      padding-left: 17px;
+      color: #475467;
+      font-size: .86rem;
+      line-height: 1.42;
+    }
+    .mini-list li + li { margin-top: 5px; }
+    .muted { color: var(--muted); }
+    .overview-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      padding: 20px;
+    }
+    .overview-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+    }
+    .analysis {
+      margin: 8px 0 0;
+      color: #526070;
+      line-height: 1.5;
+    }
+    .view-hidden { display: none; }
+    mark {
+      background: rgba(255, 229, 143, .82);
+      padding: 0 2px;
+      border-radius: 4px;
+    }
+    .empty {
+      padding: 34px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed rgba(121,139,169,.5);
+      border-radius: 22px;
+      background: rgba(255,255,255,.58);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+    }
+    @media (max-width: 980px) {
+      main { grid-template-columns: 1fr; }
+      aside { position: static; }
+      .tree { max-height: none; }
+      .toolbar { position: static; align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 720px) {
+      header { padding: 16px; }
+      main { padding: 0 16px 30px; }
+      .hero-shell { border-radius: 22px; padding: 22px; }
+      .progression-grid, .overview-grid { grid-template-columns: 1fr; }
+      .overview-top { flex-direction: column; }
+    }
+    @media print {
+      body { background: #fff; }
+      aside, .toolbar { display: none; }
+      main { display: block; padding: 0; }
+      header { padding: 0 0 16px; }
+      .hero-shell, .card, .overview-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero-shell">
+      <h1>Programmes 2025 - Cycle 2</h1>
+      <p class="subhead">Compilation interactive des programmes de français et de mathématiques, organisée par niveau, domaine, compétence globale et compétences spécifiques. Les cartes de progression permettent de comparer rapidement CP, CE1 et CE2 sans quitter la compétence étudiée.</p>
+    </div>
+  </header>
+  <main>
+    <aside>
+      <section class="panel">
+        <span class="panel-title">Vue</span>
+        <div class="view-switch" role="tablist" aria-label="Mode d'affichage">
+          <button id="detailViewButton" class="active" type="button" onclick="setView('detail')">Détail</button>
+          <button id="overviewViewButton" type="button" onclick="setView('overview')">Synthèse</button>
+        </div>
+      </section>
+      <section class="panel filters" aria-label="Filtres">
+        <label>Matière
+          <select id="subjectFilter"></select>
+        </label>
+        <label>Niveau
+          <select id="gradeFilter"></select>
+        </label>
+        <label>Domaine
+          <select id="domainFilter"></select>
+        </label>
+        <label>Compétence globale
+          <select id="globalFilter"></select>
+        </label>
+        <label>Compétence spécifique
+          <select id="specificFilter"></select>
+        </label>
+        <label>Recherche
+          <input id="searchFilter" type="search" placeholder="Mot-clé, notion, verbe...">
+        </label>
+        <button id="resetFilters" type="button">Réinitialiser les filtres</button>
+      </section>
+      <section class="panel">
+        <strong>Menu dépliable</strong>
+        <div id="tree" class="tree"></div>
+      </section>
+    </aside>
+    <section>
+      <div class="toolbar">
+        <div class="count" id="resultCount"></div>
+        <button id="printButton" class="primary-action" type="button">Imprimer / exporter en PDF</button>
+      </div>
+      <div id="results" class="results"></div>
+      <div id="overviewResults" class="results view-hidden"></div>
+    </section>
+  </main>
+  <script id="program-data" type="application/json">[{"subject": "Français", "domain": "Lecture", "grade": "CP", "globalCompetency": "Identifier les mots de manière de plus en plus aisée", "specifics": ["Décoder et encoder 12 à 15 correspondances grapho- phonémiques (CGP) régulières, fréquentes et aisément prononçables.", "Déchiffrer des syllabes, des mots puis des phrases en fonction de la progression de l’apprentissage des CGP.", "Décoder et encoder de 25 à 30 CGP.", "Avoir pris conscience de la présence de lettres finales muettes et s’appuyer sur le sens des mots pour les déchiffrer correctement.", "Mémoriser les mots fréquents et réguliers.", "Déchiffrer entre 15 et 30 mots par minute.", "Décoder 30 mots par minute au minimum fin CP, sans préparation, 50 après préparation."]}, {"subject": "Français", "domain": "Lecture", "grade": "CP", "globalCompetency": "Lire à voix haute", "specifics": ["Oraliser les syllabes déchiffrées et encodées, puis les mots.", "Oraliser régulièrement les mots et phrases déchiffrés et encodés.", "S’entrainer à lire des textes déchiffrables de manière à automatiser sa lecture.", "Lire après préparation un texte adapté à son niveau de lecture avec une vitesse de 30 mots par minute au minimum sans préparation, 50 après préparation.", "Identifier les marques de ponctuation et les prendre en compte sur un texte préparé.", "Amorcer une lecture expressive."]}, {"subject": "Français", "domain": "Lecture", "grade": "CP", "globalCompetency": "Comprendre un texte", "specifics": ["Dégager le sens global d’un texte entendu ou lu de façon autonome.", "Identifier les mots inconnus dans un texte et chercher à leur donner un sens.", "Se repérer dans la chaine anaphorique (qui relie un nom à sa ou ses reprise(s) pronominale(s) ou à d’autres noms de sens équivalent).", "Comprendre ce qui est implicite (inférences simples).", "Justifier ses réponses par un retour au texte.", "Lire et comprendre en autonomie un texte narratif, informatif ou prescriptif d’une dizaine de lignes."]}, {"subject": "Français", "domain": "Lecture", "grade": "CP", "globalCompetency": "Devenir lecteur", "specifics": ["Lire 5 à 10 œuvres complètes et variées issues du patrimoine et de la littérature de jeunesse (albums, romans, contes, fables, poèmes, pièces de théâtre et documentaires).", "Repérer et reconnaitre des types de personnages.", "Aller vers les livres et être capable d’en choisir à titre personnel.", "Relier ses lectures à son expérience personnelle, être en mesure d’établir des liens entre ses différentes lectures (mise en réseau).", "Fréquenter régulièrement des lieux de lecture et se familiariser avec eux, rencontrer des acteurs du livre."]}, {"subject": "Français", "domain": "Lecture", "grade": "CE1", "globalCompetency": "Identifier les mots de manière de plus en plus aisée", "specifics": ["Automatiser le décodage des correspondances graphophonémiques (CGP) apprises au CP.", "Décoder toutes les CGP y compris les plus complexes.", "Avoir mémorisé l’ensemble des CGP dans tous les types d’écriture, en particulier celles des sons proches (en encodage et décodage).", "Identifier directement l’ensemble des mots courants et déchiffrer avec exactitude les mots nouveaux dont le décodage n’a pas encore été automatisé."]}, {"subject": "Français", "domain": "Lecture", "grade": "CE1", "globalCompetency": "Lire à voix haute", "specifics": ["Lire un texte adapté à son niveau de lecture avec une vitesse de 70 mots par minute.", "Lire des textes narratifs, documentaires et prescriptifs en respectant tous les signes de ponctuation et les groupes de souffle.", "Lire de manière expressive."]}, {"subject": "Français", "domain": "Lecture", "grade": "CE1", "globalCompetency": "Comprendre un texte", "specifics": ["Dégager le sens global d’un texte lu, de façon autonome, à la suite d’une séance dédiée à la compréhension.", "Développer des stratégies pour élucider le sens des mots et des expressions inconnus.", "Se repérer dans la chaine anaphorique (qui relie un nom à-sa ou ses reprise(s) pronominale(s) ou à d’autres noms de sens équivalent) et s’appuyer sur le sens du texte pour résoudre des ambigüités.", "Comprendre ce qui est implicite dans le texte (inférences) dans des cas simples.", "Justifier ses réponses par un retour au texte.", "Lire et comprendre en autonomie un texte narratif,-informatif ou prescriptif d’une quinzaine de lignes."]}, {"subject": "Français", "domain": "Lecture", "grade": "CE1", "globalCompetency": "Devenir lecteur", "specifics": ["Lire 5 à 10 œuvres complètes et variées issues du patrimoine et de la littérature de jeunesse (albums, romans, contes, fables, poèmes, pièces de théâtre et documentaires).", "Se familiariser aux différents genres et types de textes.", "Faire preuve d’initiative dans ses lectures personnelles en empruntant des livres en fonction de ses gouts.", "Relier ses lectures à son expérience personnelle, être en mesure d’établir des liens entre ses différentes lectures (mise en réseau)."]}, {"subject": "Français", "domain": "Lecture", "grade": "CE2", "globalCompetency": "Identifier les mots de manière de plus en plus aisée", "specifics": ["Avoir automatisé toutes les correspondances graphophonémiques (CGP).", "Lire un texte nouveau en s’appuyant sur un décodage rapide.", "Automatiser la lecture des mots.", "Repérer les lettres muettes et décoder les mots inconnus en conservant une vitesse de lecture correspondant aux objectifs de fin d’année."]}, {"subject": "Français", "domain": "Lecture", "grade": "CE2", "globalCompetency": "Lire à voix haute", "specifics": ["Lire un texte adapté à son niveau de lecture avec une vitesse de 90 mots par minute.", "Lire un texte en respectant l’ensemble des marques de ponctuation et les liaisons.", "Manifester sa compréhension par une lecture expressive qui respecte la structure du texte, de la phrase et le sens."]}, {"subject": "Français", "domain": "Lecture", "grade": "CE2", "globalCompetency": "Comprendre un texte", "specifics": ["Lire et dégager le sens d’un texte narratif, poétique, documentaire ou théâtral, lu en autonomie ou lu par un adulte en s’appuyant sur les caractéristiques de ces textes.", "Adopter une posture active par rapport au vocabulaire inconnu.", "Se repérer dans la chaine anaphorique (qui relie un nom à sa ou ses reprise(s) pronominale(s) ou à d’autres noms de sens équivalent) et s’appuyer sur le sens du texte pour résoudre des ambigüités.", "Différencier le type narratif du type informatif et prescriptif.", "Comprendre ce qui est implicite (inférences) en s’appuyant sur des indices explicites et sur ses propres connaissances.", "Revenir au texte pour identifier et comprendre les éléments complexes.", "Lire et comprendre en autonomie un texte narratif, informatif ou prescriptif d’une vingtaine de lignes."]}, {"subject": "Français", "domain": "Lecture", "grade": "CE2", "globalCompetency": "Devenir lecteur", "specifics": ["Lire de manière autonome 5 à 10 œuvres complètes et variées issues du patrimoine et de la littérature de jeunesse (albums, romans, contes, fables, poèmes, pièces de théâtre et documentaires).", "Relier ses lectures à son expérience personnelle, être en mesure d’établir des liens entre ses différentes lectures (mise en réseau).", "Fréquenter des lieux de lecture régulièrement et rencontrer des acteurs du livre."]}, {"subject": "Français", "domain": "Écriture", "grade": "CP", "globalCompetency": "Apprendre à écrire en écriture cursive", "specifics": ["Apprendre à écrire en écriture cursive tous les graphèmes étudiés selon la progression en décodage.", "Apprendre à les enchainer, avec fluidité, avec d’autres lettres dans des syllabes, mots, phrases."]}, {"subject": "Français", "domain": "Écriture", "grade": "CP", "globalCompetency": "Encoder puis écrire sous dictée", "specifics": ["Encoder des syllabes simples puis des mots selon la progression des CGP. Dès la fin de la 2e période", "Écrire des mots dictés avec des lettres muettes apprises (mettre en relation des morphogrammes lexicaux et-grammaticaux). En fin d’année À", "Écrire sous la dictée des mots et des phrases."]}, {"subject": "Français", "domain": "Écriture", "grade": "CP", "globalCompetency": "Copier et acquérir des stratégies de copie", "specifics": ["Copier des syllabes simples puis des mots avec lettres muettes. Dès la fin de la période 1", "Copier une phrase en lien avec les 12/15 correspondances graphophonémiques étudiées.", "Commencer à verbaliser et à utiliser des stratégies de copie pour dépasser la copie lettre à lettre : prise d’indices, mémorisation de mots ou groupes de mots.", "Commencer à savoir se relire après copie.", "Copier trois ou quatre phrases sans erreur et de façon lisible."]}, {"subject": "Français", "domain": "Écriture", "grade": "CP", "globalCompetency": "Produire des écrits", "specifics": ["Écrire des graphèmes, des syllabes, des mots puis quelques phrases avec l’aide du professeur à partir des mots connus et déchiffrés. Les activités de dictées à l’adulte sont poursuivies. Dès la 2e période", "Produire des écrits courts porteurs de sens, d’une à cinq lignes, en articulation avec l’apprentissage de la lecture.", "S’appuyer sur les textes de lecture pour les transformer sur quelques points seulement (écrire à la façon de, ajouter un épisode, etc.).", "Produire des écrits courts porteurs de sens d’une à cinq lignes en articulation avec l’apprentissage de la lecture.", "Commencer à acquérir une méthodologie de production écrite : planification, mise en mots avec vigilance orthographique, relectures et révisions.", "Repérer les dysfonctionnements de son texte par la relecture à voix haute du professeur ou grâce à des outils d’aide construits à cet effet."]}, {"subject": "Français", "domain": "Écriture", "grade": "CE1", "globalCompetency": "Apprendre à écrire en écriture cursive", "specifics": ["Mémoriser le tracé normé et la transcription de toutes les lettres minuscules scriptes en lettres minuscules cursives. À partir de la période 2", "Reconnaitre les lettres dans les quatre écritures : minuscules (scripte et cursive), majuscules (scripte ou cursive).", "Apprendre le tracé normé des lettres majuscules cursives par familles de gestes."]}, {"subject": "Français", "domain": "Écriture", "grade": "CE1", "globalCompetency": "Encoder puis écrire sous dictée", "specifics": ["Orthographier correctement les mots fréquents, réguliers puis irréguliers.", "Réaliser des accords en genre et en nombre dans le groupe nominal (article, nom, adjectif) et dans le groupe verbal (marque de pluriel des verbes = nt)."]}, {"subject": "Français", "domain": "Écriture", "grade": "CE1", "globalCompetency": "Copier et acquérir des stratégies de copie", "specifics": ["Automatiser le geste d’écriture cursive par la copie de textes en temps limité.", "Acquérir des stratégies de copie et en mesurer l’efficacité. À l’issue de la période 1", "Copier quatre à cinq phrases courtes. À partir de la période 3", "Copier cinq ou six lignes sans erreur. À la fin de l’année", "Recopier sans effort une dizaine de lignes en respectant la ponctuation et la mise en page."]}, {"subject": "Français", "domain": "Écriture", "grade": "CE1", "globalCompetency": "Produire des écrits", "specifics": ["Rédiger une phrase simple à partir d’une phrase prototypique, en changeant un puis plusieurs mots. Dès la période 1", "Écrire un texte court de une à trois phrases. Au cours des périodes 1 à 5", "Insérer des connecteurs pour rendre cohérent l’enchainement de plusieurs phrases.", "Retravailler un texte (issu de lecture et/ou d’écriture) en A fonction d’une ou deux contraintes d’écriture.", "Continuer à acquérir une méthodologie de production écrite : planification, mise en mots avec vigilance.-orthographique, révision après retours immédiats du professeur.", "Écrire un texte de six ou sept phrases maximum en E assurant la cohérence syntaxique et logique du texte-produit."]}, {"subject": "Français", "domain": "Écriture", "grade": "CE2", "globalCompetency": "Apprendre à écrire en écriture cursive", "specifics": ["Automatiser l’écriture de toutes les lettres minuscules et majuscules en cursive."]}, {"subject": "Français", "domain": "Écriture", "grade": "CE2", "globalCompetency": "Encoder puis écrire sous dictée", "specifics": ["Orthographier correctement les mots fréquents, réguliers et irréguliers et des phrases selon les accords étudiés dans le cadre de dictées."]}, {"subject": "Français", "domain": "Écriture", "grade": "CE2", "globalCompetency": "Copier et acquérir des stratégies de copie", "specifics": ["Copier une dizaine de lignes sans erreur en conjuguant vitesse et exactitude et en respectant les mises en page complexes."]}, {"subject": "Français", "domain": "Écriture", "grade": "CE2", "globalCompetency": "Produire des écrits", "specifics": ["Développer tout au long de l’année les compétences qui lui permettront en fin d’année : une information, etc., à un destinataire ; d’entrainer les automatismes appris en grammaire et orthographe ; types et relevant des différents enseignements : respecter la syntaxe, les règles orthographiques étudiées, réemployer un lexique précis et prendre en compte des contraintes d’écriture ;"]}, {"subject": "Français", "domain": "Oral", "grade": "CP", "globalCompetency": "Écouter pour comprendre", "specifics": ["Comprendre un message entendu de quelques minutes et mémoriser quelques informations importantes."]}, {"subject": "Français", "domain": "Oral", "grade": "CP", "globalCompetency": "Dire pour être compris", "specifics": ["Mener une brève production orale pour rapporter, raconter, décrire ou expliquer, en utilisant quelques organisateurs du discours et en mobilisant le lexique appris.", "S’écouter pour progresser et proposer des reformulations.", "Oraliser un texte mémorisé ou préparé en tenant compte de son auditoire."]}, {"subject": "Français", "domain": "Oral", "grade": "CP", "globalCompetency": "Participer à des échanges", "specifics": ["Participer aux échanges en respectant les règles, en écoutant les autres et en donnant son avis.", "Prendre conscience des écarts de niveau de langue selon les situations de communication."]}, {"subject": "Français", "domain": "Oral", "grade": "CE1", "globalCompetency": "Écouter pour comprendre", "specifics": ["Maintenir une attention active pendant quelques minutes pour repérer, mémoriser, classer ou ordonner les informations importantes entendues à l’oral."]}, {"subject": "Français", "domain": "Oral", "grade": "CE1", "globalCompetency": "Dire pour être compris", "specifics": ["Utiliser à l’oral l’ensemble des temps verbaux pour raconter, décrire, expliquer, comparer ou exposer.", "Utiliser les critères définis pour évaluer sa prestation ou celle des autres et progresser dans la production de différents types de discours."]}, {"subject": "Français", "domain": "Oral", "grade": "CE1", "globalCompetency": "Participer à des échanges", "specifics": ["Respecter le propos au cours des échanges au sein d’un groupe.", "Adapter le registre de langue utilisé (familier, courant, soutenu) à la situation de communication proposée : conversation entre pairs, dialogue avec un adulte connu, une personnalité inconnue, etc."]}, {"subject": "Français", "domain": "Oral", "grade": "CE2", "globalCompetency": "Écouter pour comprendre", "specifics": ["Repérer, mémoriser et relier entre elles plusieurs informations importantes pour construire la cohérence d’un message entendu de plus en plus long et complexe (5 minutes maximum), en évaluant son degré de compréhension."]}, {"subject": "Français", "domain": "Oral", "grade": "CE2", "globalCompetency": "Dire pour être compris", "specifics": ["Mener une production orale de plus en plus longue et structurée pour raconter, expliquer, argumenter, justifier.", "Maintenir l’intérêt de son auditoire lors des différentes prestations orales."]}, {"subject": "Français", "domain": "Oral", "grade": "CE2", "globalCompetency": "Participer à des échanges", "specifics": ["Tenir compte de ce qui a déjà été dit lors des interventions au sein d’un groupe.", "Utiliser un registre de langue et adopter des postures adaptées aux situations proposées (jeux de rôles)."]}, {"subject": "Français", "domain": "Vocabulaire", "grade": "CP", "globalCompetency": "Enrichir son vocabulaire dans tous les enseignements", "specifics": ["Enrichir en contexte le vocabulaire appris au cycle 1.", "Être sensible, sans en apprendre les concepts, à la polysémie et à la différence entre sens propre et sens figuré.", "Commencer à mobiliser l’ordre alphabétique pour utiliser un dictionnaire adapté (papier ou numérique)."]}, {"subject": "Français", "domain": "Vocabulaire", "grade": "CP", "globalCompetency": "Établir des relations entre les mots", "specifics": ["Constituer des répertoires de mots par thème, par classe grammaticale, par famille de mots, par analogies morphologiques.", "Savoir proposer et justifier une catégorisation du corpus de mots étudié.", "Savoir trouver des synonymes et des antonymes."]}, {"subject": "Français", "domain": "Vocabulaire", "grade": "CP", "globalCompetency": "Réemployer le vocabulaire étudié", "specifics": ["Réemployer et mémoriser le vocabulaire appris en maternelle.", "Réemployer et mémoriser les expressions et les mots appris en fonction de contraintes de production orale ou écrite.", "Percevoir la différence entre deux niveaux de langue et choisir le plus adapté à la situation."]}, {"subject": "Français", "domain": "Vocabulaire", "grade": "CP", "globalCompetency": "Mémoriser l’orthographe lexicale", "specifics": ["Mémoriser l’orthographe des mots réguliers fréquemment rencontrés et du lexique le plus couramment employé et pouvoir les écrire sous la dictée, en lien avec les correspondances graphophonémiques (CGP) étudiées.", "Identifier et nommer les accents.", "Connaitre la valeur sonore de certaines lettres (s – c – g) et la composition de certains graphèmes selon la lettre qui suit (an/am, en/em, on/om, in/im), en fonction du contexte et dans des mots fréquemment rencontrés.", "Être capable de comprendre la présence d’une lettre muette finale à l’aide d’un mot de la même famille : chat/chaton, gros/grossir, etc."]}, {"subject": "Français", "domain": "Vocabulaire", "grade": "CE1", "globalCompetency": "Enrichir son vocabulaire dans toutes les disciplines", "specifics": ["Enrichir les répertoires constitués au CP en y ajoutant notamment des expressions ou locutions.", "Automatiser l’utilisation de différentes formulations, associées à un même réseau, en contexte.", "S’appuyer sur la morphologie des mots pour en trouver le sens.", "Prendre l’habitude de consulter des articles de dictionnaire adapté."]}, {"subject": "Français", "domain": "Vocabulaire", "grade": "CE1", "globalCompetency": "Établir des relations entre les mots", "specifics": ["Percevoir de grandes catégories et hiérarchiser les termes génériques, de base et spécifiques.", "Percevoir les niveaux de langue familier, courant et soutenu.", "Comprendre la différence entre sens propre/sens figuré.", "Trier et apparier les mots et leurs dérivés en fonction des préfixes et suffixes identifiés."]}, {"subject": "Français", "domain": "Vocabulaire", "grade": "CE1", "globalCompetency": "Réemployer le vocabulaire étudié", "specifics": ["Mobiliser les mots rencontrés en contexte en fonction des lectures et des activités conduites pour mieux parler, mieux comprendre et mieux écrire.", "Utiliser les relations établies entre les mots depuis le cycle 1 (champ lexical, classe grammaticale, morphologie, niveau de langue) pour varier et adapter son expression."]}, {"subject": "Français", "domain": "Vocabulaire", "grade": "CE1", "globalCompetency": "Mémoriser l’orthographe des mots", "specifics": ["Mémoriser l’orthographe des mots réguliers et irréguliers fréquemment rencontrés et du lexique le plus couramment employé.", "Tenir compte des accents.", "Classer par analogie et mémoriser les mots les plus fréquents comportant des graphèmes à prononciation variable : s prononcé –ss ou –z, c prononcé –ss ou –k, g prononcé –j ou –g.", "Être capable d’anticiper une lettre muette finale à l’aide d’un mot de la même famille : blanc/blanche, sang/sanguin, etc."]}, {"subject": "Français", "domain": "Vocabulaire", "grade": "CE2", "globalCompetency": "Enrichir son vocabulaire dans toutes les disciplines", "specifics": ["Enrichir les répertoires constitués au CP et au CE1 en y ajoutant notamment des expressions ou des locutions.", "Automatiser l’utilisation de différentes formulations, associées à un réseau, en contexte.", "Comprendre le lien sémantique entre sens propre et sens figuré dans les cas les plus fréquents.", "S’appuyer sur la morphologie des mots pour en trouver le sens.", "Consulter avec aisance des articles de dictionnaire adapté pour y vérifier le sens supposé de mots rencontrés."]}, {"subject": "Français", "domain": "Vocabulaire", "grade": "CE2", "globalCompetency": "Établir des relations entre les mots", "specifics": ["Enrichir les collections constituées au début du cycle avec des mots, des expressions et des associations fréquentes.", "Percevoir de grandes catégories et hiérarchiser les termes génériques de base et spécifiques.", "Savoir utiliser les niveaux de langue (familier, courant et soutenu) en fonction des situations et des interlocuteurs.", "Se constituer un répertoire lexical personnel qui pourra-forger l’autonomie visée au cycle 3.", "Trier et apparier des mots et leurs dérivés en fonction des préfixes et suffixes identifiés."]}, {"subject": "Français", "domain": "Vocabulaire", "grade": "CE2", "globalCompetency": "Réemployer le vocabulaire étudié", "specifics": ["Employer à bon escient et rigoureusement les mots étudiés, en référence à leur contexte d’emploi et leur éventuelle polysémie.", "Comprendre la différence entre sens propre/sens figuré.", "Changer de niveau de langue selon les situations.", "Automatiser la restitution des mots d’un corpus étudié (fluence verbale)."]}, {"subject": "Français", "domain": "Vocabulaire", "grade": "CE2", "globalCompetency": "Mémoriser l’orthographe des mots", "specifics": ["Écrire correctement sous la dictée les mots réguliers et irréguliers fréquemment rencontrés.", "Tenir compte des accents.", "S’appuyer sur des critères morphologiques (radical, préfixe et suffixe) et analogiques pour orthographier correctement les mots."]}, {"subject": "Français", "domain": "Grammaire et orthographe", "grade": "CP", "globalCompetency": "Se repérer dans la phrase simple", "specifics": []}, {"subject": "Français", "domain": "Grammaire et orthographe", "grade": "CP", "globalCompetency": "Découvrir, comprendre et mettre en œuvre l’orthographe grammaticale", "specifics": []}, {"subject": "Français", "domain": "Grammaire et orthographe", "grade": "CE1", "globalCompetency": "Se repérer dans la phrase simple", "specifics": ["Identifier la phrase simple, en distinguer les principaux constituants et les nommer : groupe sujet (GS), verbe et compléments sans distinguer ces derniers entre eux.", "Reconnaitre et utiliser les trois types de phrases, en lien avec la ponctuation : déclarative, interrogative et impérative.", "Reconnaitre les formes négatives et exclamatives et savoir effectuer des transformations.", "Différencier et nommer les principales classes de mots : le déterminant, le nom commun, le nom propre, l’adjectif, le verbe, le pronom personnel sujet."]}, {"subject": "Français", "domain": "Grammaire et orthographe", "grade": "CE1", "globalCompetency": "Découvrir, comprendre et mettre en œuvre l’orthographe grammaticale", "specifics": []}, {"subject": "Français", "domain": "Grammaire et orthographe", "grade": "CE2", "globalCompetency": "Se repérer dans la phrase simple", "specifics": ["Identifier la phrase simple et reconnaitre ses principaux constituants : le groupe sujet, le verbe et les compléments sans distinguer ces derniers entre eux.", "Reconnaitre et produire les trois types de phrases : déclarative, interrogative et impérative.", "Reconnaitre et produire les formes négative et exclamative.", "Différencier et nommer les principales classes de mots : le déterminant, le nom commun, le nom propre, l’adjectif, le verbe, le pronom personnel sujet et l’adverbe.", "Utiliser la ponctuation de fin de phrase (. ! ?) et reconnaitre les marques du discours rapporté (« … »)."]}, {"subject": "Français", "domain": "Grammaire et orthographe", "grade": "CE2", "globalCompetency": "Découvrir, comprendre et mettre en œuvre l’orthographe grammaticale", "specifics": ["Repérer, comprendre et mettre en œuvre les marques d’accord au sein du groupe nominal.", "Identifier, dans des situations simples, la relation sujet- verbe.", "Apprendre à conjuguer au présent, à l’imparfait, au futur et au passé composé de l’indicatif être et avoir, les verbes du premier groupe et les verbes irréguliers du 3e groupe (faire, aller, dire, venir, pouvoir, voir, vouloir, prendre).", "Identifier le radical et la terminaison d’un verbe conjugué au programme et trouver son infinitif."]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CP", "globalCompetency": "Les nombres entiers", "specifics": ["Comparer et dénombrer des collections en les organisant.", "Construire des collections de cardinal donné.", "Connaitre la suite écrite et la suite orale des nombres jusqu’à cent.", "Connaitre et utiliser diverses représentations d’un nombre et passer de l’une à l’autre.", "Connaitre la valeur des chiffres en fonction de leur position (unités, dizaines).", "Comparer, encadrer, intercaler des nombres entiers en utilisant les symboles =, \u003c et >.", "Ordonner des nombres dans l’ordre croissant ou décroissant.", "Savoir placer des nombres sur une demi-droite graduée de un en un.", "Connaitre les nombres ordinaux jusqu’à « vingtième ».", "Comprendre et utiliser les nombres ordinaux.", "Repérer un rang ou une position dans une file orientée ou dans une liste d’objets ou de personnes.", "Faire le lien entre le rang d’un objet dans une liste et le nombre d’éléments qui le précèdent.", "Utiliser les nombres ordinaux dans le cadre de l’étude de suites de symboles, de formes, de lettres ou de nombres."]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CP", "globalCompetency": "Les quatre opérations", "specifics": ["Comprendre le sens de l’addition et de la soustraction.", "Comprendre et utiliser les symboles « + », «-» et « = ».", "Poser et effectuer des additions en colonnes.", "Comprendre le sens de la multiplication."]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CP", "globalCompetency": "Le calcul mental", "specifics": []}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CP", "globalCompetency": "Mémoriser des faits numériques", "specifics": ["Connaitre dans les deux sens les tables d’addition.", "Connaitre les doubles et les moitiés de nombres usuels."]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CP", "globalCompetency": "Utiliser ses connaissances en numération pour calculer mentalement", "specifics": ["Ajouter ou soustraire 1 ou 2 à un nombre.", "Ajouter ou soustraire 10 à un nombre.", "Ajouter ou soustraire 20, 30, 40, 50, 60, 70, 80 ou 90 à un nombre."]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CP", "globalCompetency": "Apprendre des procédures de calcul mental", "specifics": ["Trouver le complément d’un nombre à la dizaine supérieure.", "Ajouter un nombre inférieur P à 9 à un nombre. n S q 2 S p d L e D", "Ajouter 9 à un nombre. L a c S d A c", "Ajouter deux nombres L inférieurs à 100. a t E L 4", "Déterminer la moitié d’un L nombre pair. d P 4 L 2 L A i é", "Soustraire un nombre L inférieur à 10 à un nombre i entier de dizaines. r 5 5 u P d t"]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CP", "globalCompetency": "La résolution de problèmes", "specifics": ["Résoudre des problèmes additifs en une étape du type parties-tout.", "Résoudre des problèmes additifs en deux étapes (champ numérique inférieur ou égal à 30).", "Résoudre des problèmes multiplicatifs en une étape (champ numérique inférieur ou égal à 30). P c b c L n e s p d P r d f L p ( c T c f"]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE1", "globalCompetency": "Les nombres entiers", "specifics": ["Dénombrer des collections en les organisant.", "Construire des collections de cardinal donné.", "Connaitre et utiliser la relation entre unités et dizaines, entre dizaines et centaines, entre unités et centaines.", "Connaitre la suite écrite et la suite orale des nombres jusqu’à mille.", "Connaitre et utiliser diverses représentations d’un nombre et passer de l’une à l’autre.", "Connaitre la valeur des chiffres en fonction de leur position dans un nombre.", "Comparer, encadrer, intercaler des nombres entiers en utilisant les symboles (=, \u003c, >).", "Ordonner des nombres dans l’ordre croissant ou décroissant.", "Comprendre et savoir utiliser les expressions « égal à », « supérieur à », « inférieur à », « compris entre … et … ».", "Savoir placer des nombres sur une demi-droite graduée.", "Connaitre les nombres ordinaux jusqu’à cent.", "Comprendre et utiliser les nombres ordinaux.", "Repérer un rang ou une position dans une file orientée ou dans une liste d’objets ou de personnes.", "Faire le lien entre le rang d’un objet dans une liste et le nombre d’éléments qui le précèdent.", "Utiliser les nombres ordinaux dans le cadre de suite de symboles, de lettres ou de nombres."]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE1", "globalCompetency": "Les fractions", "specifics": ["Savoir interpréter, représenter, écrire et lire les fractions 1 , 1 , 1 , 1 , 1 , 1 et 1 . 2 3 4 5 6 8 10", "Savoir interpréter, représenter, écrire et lire des fractions inférieures ou égales à 1.", "Connaitre et utiliser les mots « dénominateur » et « numérateur ».", "Comparer des fractions ayant le même dénominateur.", "Comparer des fractions dont le numérateur est 1.", "Additionner et soustraire des fractions de même dénominateur."]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE1", "globalCompetency": "Les quatre opérations", "specifics": ["Poser et effectuer des additions et des soustractions en colonnes.", "Comprendre et utiliser le symbole « × ».", "Comprendre et savoir que la multiplication est commutative.", "Connaitre la notion de parité L d’un nombre. L"]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE1", "globalCompetency": "Le calcul mental", "specifics": []}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE1", "globalCompetency": "Mémoriser des faits numériques", "specifics": ["Connaitre dans les deux sens les tables d’addition.", "Connaitre dans les deux sens les tables de multiplication.", "Connaitre des faits multiplicatifs usuels."]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE1", "globalCompetency": "Utiliser ses connaissances en numération pour calculer mentalement", "specifics": []}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE1", "globalCompetency": "Apprendre des procédures de calcul mental", "specifics": []}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE1", "globalCompetency": "La résolution de problèmes", "specifics": ["Résoudre des problèmes additifs en une étape de type parties-tout.", "Résoudre des problèmes additifs de comparaison en une étape.", "Résoudre des problèmes L additifs en deux étapes.  P P e v P", "Résoudre des problèmes L multiplicatifs en une étape. t L n c L L c n", "Résoudre des problèmes mixtes en deux étapes (une étape additive et une étape multiplicative)."]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE2", "globalCompetency": "Les nombres entiers", "specifics": ["Dénombrer des collections.", "Construire des collections de cardinal donné.", "Connaitre et utiliser les relations entre les unités de numération.", "Connaitre la suite écrite et la suite orale des nombres jusqu’à dix-mille.", "Connaitre et utiliser diverses représentations d’un nombre et passer de l’une à l’autre.", "Connaitre la valeur des chiffres en fonction de leur position dans un nombre.", "Comparer, encadrer, intercaler des nombres entiers en utilisant les symboles (=, \u003c, >).", "Ordonner des nombres dans l’ordre croissant ou décroissant.", "Comprendre et savoir utiliser les expressions « égal à », « supérieur à », « inférieur à », « compris entre … et … ».", "Savoir placer des nombres sur une demi-droite graduée."]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE2", "globalCompetency": "Les fractions", "specifics": ["Savoir établir des égalités de fractions inférieures ou égales à 1.", "Partager une unité de longueur en fractions d’unité et mesurer des longueurs non entières par rapport à cette unité.", "Comparer des fractions inférieures à 1.", "Additionner et soustraire des fractions."]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE2", "globalCompetency": "Les quatre opérations", "specifics": ["Comprendre et utiliser les mots « terme », « somme » et « différence ».", "Poser et effectuer des additions et des soustractions en colonnes.", "Comprendre et utiliser les mots « facteur », « produit » et « multiple ».", "Comprendre le sens de la division et utiliser le symbole « ÷ ».", "Poser et effectuer des multiplications d’un nombre à deux ou trois chiffres par un nombre à un ou deux chiffres."]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE2", "globalCompetency": "Le calcul mental", "specifics": []}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE2", "globalCompetency": "Mémoriser des faits numériques", "specifics": ["Connaitre dans les deux sens les tables d’addition.", "Connaitre dans les deux sens les tables de multiplication.", "Connaitre des faits multiplicatifs usuels."]}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE2", "globalCompetency": "Utiliser ses connaissances en numération pour calculer mentalement", "specifics": []}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE2", "globalCompetency": "Apprendre des procédures de calcul mental", "specifics": []}, {"subject": "Mathématiques", "domain": "Nombres, calcul et résolution de problèmes", "grade": "CE2", "globalCompetency": "La résolution de problèmes", "specifics": ["Résoudre des problèmes additifs en une étape de types parties-tout et comparaison.", "Résoudre des problèmes additifs en deux étapes.", "Résoudre des problèmes multiplicatifs en une étape.", "Résoudre des problèmes mixtes en deux ou trois étapes.", "Résoudre des problèmes de comparaison multiplicative en une étape.", "Résoudre des problèmes mettant en jeu des produits cartésiens."]}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CP", "globalCompetency": "Les longueurs et les masses", "specifics": []}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CP", "globalCompetency": "Les longueurs", "specifics": ["Utiliser le lexique spécifique associé aux longueurs.", "Comparer des objets selon leur longueur.", "Comparer des segments selon leur longueur.", "Savoir mesurer la longueur d’un segment en utilisant une règle graduée.", "Connaitre et utiliser les unités mètre et centimètre et les symboles associés (m et cm).", "Connaitre quelques longueurs de référence.", "Savoir qu’un mètre est égal à cent centimètres."]}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CP", "globalCompetency": "Les masses", "specifics": []}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CP", "globalCompetency": "La monnaie", "specifics": ["Utiliser le lexique spécifique lié à la monnaie.", "Comparer les valeurs de deux ensembles constitués de pièces de monnaie ou de deux ensembles constitués de pièces et de billets.", "Déterminer la valeur en euro d’un ensemble constitué de pièces et de billets.", "Constituer une somme d’argent donnée avec des pièces et des billets.", "Simuler des achats en manipulant des pièces et des billets fictifs. Rendre la monnaie."]}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CP", "globalCompetency": "Le repérage dans le temps", "specifics": ["Lire sur une horloge à aiguilles une heure donnée en heures entières.", "Positionner les aiguilles d’une horloge correspondant à une heure donnée (uniquement des heures entières inférieures ou égales à douze).", "Associer une heure à un moment de la journée."]}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CE1", "globalCompetency": "Les longueurs et les masses", "specifics": []}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CE1", "globalCompetency": "Les longueurs", "specifics": ["Connaitre et utiliser les unités mètre, centimètre, kilomètre et les symboles associés (m, cm et km).", "Choisir l’unité la mieux adaptée pour exprimer une longueur.", "Connaitre les relations entre les unités de longueur usuelles.", "Savoir mesurer la longueur d’un segment en utilisant une règle graduée.", "Comparer des longueurs.", "Connaitre quelques longueurs de référence.", "Estimer la longueur d’un objet du quotidien."]}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CE1", "globalCompetency": "Les masses", "specifics": []}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CE1", "globalCompetency": "La monnaie", "specifics": ["Connaitre le lien entre les euros et les centimes.", "Comparer les valeurs en euro de deux ensembles constitués de pièces et de billets.", "Déterminer la valeur en euro et centime d’euro d’un ensemble constitué de pièces et de billets.", "Constituer avec des euros et des centimes d’euro une somme d’argent d’une valeur donnée.", "Simuler des achats en manipulant des pièces et des billets fictifs. Rendre la monnaie.", "Connaitre le sens de l’écriture à virgule d’une somme d’argent."]}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CE1", "globalCompetency": "Le repérage dans le temps et les durées", "specifics": []}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CE2", "globalCompetency": "Les longueurs, les masses et les contenances", "specifics": []}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CE2", "globalCompetency": "Les longueurs", "specifics": ["Connaitre et utiliser les unités mètre, décimètre, centimètre, millimètre, kilomètre et les symboles associés (m, dm, cm, mm, km).", "Connaitre les relations entre les unités de longueur.", "Choisir l’unité la mieux adaptée pour exprimer une longueur.", "Comparer des longueurs.", "Tracer un segment de longueur donnée.", "Disposer de quelques longueurs de référence.", "Estimer la longueur d’un objet ou une distance.", "Savoir ce qu’est le périmètre d’une figure plane.", "Comparer le périmètre de plusieurs polygones sans règle graduée, en utilisant un compas.", "Déterminer le périmètre d’un polygone en utilisant une règle graduée."]}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CE2", "globalCompetency": "Les masses", "specifics": []}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CE2", "globalCompetency": "Les contenances", "specifics": []}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CE2", "globalCompetency": "La monnaie", "specifics": ["Simuler des achats en manipulant des pièces et des billets fictifs. Rendre la monnaie.", "Poser et effectuer des additions de montants en euro.", "Poser et effectuer des soustractions de montants en euro."]}, {"subject": "Mathématiques", "domain": "Grandeurs et mesures", "grade": "CE2", "globalCompetency": "Le repérage dans le temps et les durées", "specifics": ["Lire l’heure sur une horloge à aiguilles.", "Positionner les aiguilles d’une horloge correspondant à une heure donnée en heures entières ou en heures et minutes.", "Comparer et mesurer des durées écoulées entre deux instants affichés sur une horloge (pour des intervalles de temps situés dans une même journée).", "Résoudre des problèmes à une ou deux étapes impliquant des durées."]}, {"subject": "Mathématiques", "domain": "Espace et géométrie", "grade": "CP", "globalCompetency": "Les solides", "specifics": ["Reconnaitre les solides usuels suivants : cube, boule, cône, cylindre, pavé.", "Nommer un cube, un pavé et une boule.", "Décrire un cube ou un pavé en utilisant le terme « face ». Connaitre le nombre et la nature des faces d’un cube et d’un pavé.", "Construire des cubes et des pavés."]}, {"subject": "Mathématiques", "domain": "Espace et géométrie", "grade": "CP", "globalCompetency": "La géométrie plane", "specifics": ["Reconnaitre des formes planes (disque, carré, rectangle et triangle) dans un assemblage et dans son environnement proche.", "Nommer le disque, le carré, le rectangle et le triangle.", "Donner une première description du carré, du rectangle, du triangle en utilisant les termes « sommet » et « côté ».", "Repérer visuellement des alignements.", "Utiliser la règle pour repérer ou vérifier des alignements.", "Utiliser la règle comme instrument de tracé.", "Construire un carré, un rectangle, un triangle ou un assemblage de ces figures sur du papier quadrillé ou pointé."]}, {"subject": "Mathématiques", "domain": "Espace et géométrie", "grade": "CP", "globalCompetency": "Le repérage dans l’espace", "specifics": ["Connaitre et utiliser le vocabulaire lié aux positions relatives.", "Situer des personnes ou des objets les uns par rapport aux autres ou par rapport à d’autres repères dans la classe.", "Construire et utiliser des représentations de la classe pour localiser, mémoriser et communiquer un emplacement.", "Construire et reproduire des assemblages de solides à partir d’un modèle en trois dimensions ou de représentations planes.", "Se déplacer et décrire des déplacements dans la classe en s’orientant et en utilisant des repères.", "Construire et utiliser un plan de la classe pour communiquer un déplacement.", "Utiliser et produire une suite d’instructions qui codent un déplacement en utilisant un vocabulaire spatial précis."]}, {"subject": "Mathématiques", "domain": "Espace et géométrie", "grade": "CE1", "globalCompetency": "Les solides", "specifics": ["Reconnaitre les solides usuels suivants : cube, boule, cône, pyramide, cylindre, pavé.", "Nommer un cube, une boule, un pavé, un cône ou une pyramide.", "Décrire un cube, un pavé ou une pyramide en utilisant les termes « face », « sommet » et « arête ».", "Connaitre le nombre et la nature des faces d’un cube ou d’un pavé.", "Construire un cube, un pavé droit ou une pyramide."]}, {"subject": "Mathématiques", "domain": "Espace et géométrie", "grade": "CE1", "globalCompetency": "La géométrie plane", "specifics": ["Utiliser le vocabulaire géométrique approprié.", "Reconnaitre, nommer et décrire un cercle, un carré, un rectangle, un triangle, un triangle rectangle en utilisant le vocabulaire approprié.", "Connaitre les propriétés des angles et des égalités de longueur pour les carrés et les rectangles.", "Reproduire ou construire un carré, un rectangle, un triangle, un triangle rectangle et un cercle ou un assemblage de ces figures.", "Utiliser la règle pour vérifier des alignements et l’équerre pour vérifier qu’un angle est droit.", "Utiliser la règle graduée, l’équerre et le compas comme instruments de tracé.", "Connaitre et utiliser le code pour les angles droits."]}, {"subject": "Mathématiques", "domain": "Espace et géométrie", "grade": "CE1", "globalCompetency": "Le repérage dans l’espace", "specifics": ["Connaitre et utiliser le vocabulaire lié aux positions relatives.", "Situer des personnes ou des objets les uns par rapport aux autres ou par rapport à L d’autres repères dans un t espace familier. L", "Construire et utiliser des q représentations d’un espace b familier pour localiser, mémoriser ou communiquer un emplacement.", "Construire des assemblages L de cubes et de pavés. t e", "Comprendre, utiliser et L produire une suite a d’instructions qui codent un L déplacement en utilisant un S vocabulaire spatial précis. q q L q"]}, {"subject": "Mathématiques", "domain": "Espace et géométrie", "grade": "CE2", "globalCompetency": "Les solides", "specifics": ["Nommer un cube, une boule, un pavé, un cône, une pyramide ou un cylindre.", "Décrire un cube, un pavé ou une pyramide en utilisant les termes « face », « sommet » et « arête ».", "Connaitre le nombre et la nature des faces d’un cube ou d’un pavé.", "Connaitre la nature des faces d’une pyramide.", "Construire un cube, un pavé ou une pyramide.", "Construire un cube à partir d’un patron."]}, {"subject": "Mathématiques", "domain": "Espace et géométrie", "grade": "CE2", "globalCompetency": "La géométrie plane", "specifics": ["Utiliser le vocabulaire géométrique approprié.", "Reconnaitre, nommer et décrire le carré, le rectangle, le triangle, le triangle rectangle et le losange.", "Connaitre les propriétés des angles et les égalités de longueur pour les carrés, les rectangles et les losanges.", "Reproduire ou construire un carré, un rectangle, un triangle, un triangle rectangle et un cercle ou des assemblages de ces figures sur tout support (papier quadrillé ou pointé ou papier uni), avec une règle graduée, une équerre ou un compas.", "Connaitre et utiliser le codage d’un angle droit et celui qui indique que des segments ont la même longueur.", "Reconnaitre si une figure possède un ou plusieurs axes de symétrie en utilisant des pliages ou du papier calque.", "Compléter, sur une feuille quadrillée ou pointée, une figure simple pour la rendre symétrique par rapport à un axe donné."]}, {"subject": "Mathématiques", "domain": "Organisation et gestion de données", "grade": "CP", "globalCompetency": "Organisation et gestion de données", "specifics": ["Collecter des données et présenter ces données sous forme d’un tableau ou d’un diagramme en barres.", "Construire et compléter un tableau à double entrée."]}, {"subject": "Mathématiques", "domain": "Organisation et gestion de données", "grade": "CE1", "globalCompetency": "Organisation et gestion de données", "specifics": ["Produire un tableau ou un diagramme en barres pour présenter des données recueillies.", "Lire et interpréter les données d’un diagramme en barres. Lire et interpréter les données d’un tableau à double entrée."]}, {"subject": "Mathématiques", "domain": "Organisation et gestion de données", "grade": "CE2", "globalCompetency": "Organisation et gestion de données", "specifics": []}]</script>
+  <script>
+    const DATA = JSON.parse(document.getElementById('program-data').textContent);
+    const GRADES = ['CP', 'CE1', 'CE2'];
+    const state = {
+      view: 'detail',
+      subject: '',
+      grade: '',
+      domain: '',
+      global: '',
+      specific: '',
+      search: ''
+    };
+    const el = id => document.getElementById(id);
+    const controls = {
+      subject: el('subjectFilter'),
+      grade: el('gradeFilter'),
+      domain: el('domainFilter'),
+      global: el('globalFilter'),
+      specific: el('specificFilter'),
+      search: el('searchFilter')
+    };
+    const viewButtons = {
+      detail: el('detailViewButton'),
+      overview: el('overviewViewButton')
+    };
+
+    const groupKey = entry => [entry.subject, entry.domain, entry.globalCompetency].join('|||');
+    const progressionIndex = DATA.reduce((acc, entry) => {
+      const key = groupKey(entry);
+      acc[key] ??= {};
+      acc[key][entry.grade] = entry;
+      return acc;
+    }, {});
+
+    function uniq(values) {
+      return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, 'fr'));
+    }
+
+    function optionList(select, values, label, current) {
+      select.innerHTML = '';
+      select.append(new Option(label, ''));
+      values.forEach(value => select.append(new Option(value, value)));
+      select.value = values.includes(current) ? current : '';
+    }
+
+    function matches(entry) {
+      if (state.subject && entry.subject !== state.subject) return false;
+      if (state.grade && entry.grade !== state.grade) return false;
+      if (state.domain && entry.domain !== state.domain) return false;
+      if (state.global && entry.globalCompetency !== state.global) return false;
+      if (state.specific && !entry.specifics.includes(state.specific)) return false;
+      if (state.search) {
+        const haystack = [
+          entry.subject, entry.grade, entry.domain, entry.globalCompetency,
+          entry.specifics.join(' ')
+        ].join(' ').toLocaleLowerCase('fr');
+        if (!haystack.includes(state.search.toLocaleLowerCase('fr'))) return false;
+      }
+      return true;
+    }
+
+    function matchesOverview(group) {
+      const entries = GRADES.map(grade => group.byGrade[grade]).filter(Boolean);
+      if (state.subject && !entries.some(entry => entry.subject === state.subject)) return false;
+      if (state.grade && !group.byGrade[state.grade]) return false;
+      if (state.domain && group.domain !== state.domain) return false;
+      if (state.global && group.globalCompetency !== state.global) return false;
+      if (state.specific && !entries.some(entry => entry.specifics.includes(state.specific))) return false;
+      if (state.search) {
+        const haystack = entries.map(entry => [
+          entry.subject, entry.grade, entry.domain, entry.globalCompetency,
+          entry.specifics.join(' ')
+        ].join(' ')).join(' ').toLocaleLowerCase('fr');
+        if (!haystack.includes(state.search.toLocaleLowerCase('fr'))) return false;
+      }
+      return true;
+    }
+
+    function scopedData(level) {
+      return DATA.filter(entry => {
+        if (level !== 'subject' && state.subject && entry.subject !== state.subject) return false;
+        if (level !== 'grade' && state.grade && entry.grade !== state.grade) return false;
+        if (level !== 'domain' && state.domain && entry.domain !== state.domain) return false;
+        if (level !== 'global' && state.global && entry.globalCompetency !== state.global) return false;
+        return true;
+      });
+    }
+
+    function refreshOptions() {
+      optionList(controls.subject, uniq(scopedData('subject').map(e => e.subject)), 'Toutes les matières', state.subject);
+      state.subject = controls.subject.value;
+      optionList(controls.grade, GRADES, state.view === 'overview' ? 'Tous les niveaux de la synthèse' : 'Tous les niveaux', state.grade);
+      state.grade = controls.grade.value;
+      optionList(controls.domain, uniq(scopedData('domain').map(e => e.domain)), 'Tous les domaines', state.domain);
+      state.domain = controls.domain.value;
+      optionList(controls.global, uniq(scopedData('global').map(e => e.globalCompetency)), 'Toutes les compétences globales', state.global);
+      state.global = controls.global.value;
+      optionList(controls.specific, uniq(scopedData('specific').flatMap(e => e.specifics)), 'Toutes les compétences spécifiques', state.specific);
+      state.specific = controls.specific.value;
+    }
+
+    function getOverviewGroups() {
+      const groups = {};
+      DATA.forEach(entry => {
+        const key = groupKey(entry);
+        groups[key] ??= {
+          key,
+          subject: entry.subject,
+          domain: entry.domain,
+          globalCompetency: entry.globalCompetency,
+          byGrade: {}
+        };
+        groups[key].byGrade[entry.grade] = entry;
+      });
+      return Object.values(groups).sort((a, b) =>
+        a.subject.localeCompare(b.subject, 'fr') ||
+        a.domain.localeCompare(b.domain, 'fr') ||
+        a.globalCompetency.localeCompare(b.globalCompetency, 'fr')
+      );
+    }
+
+    function relevantSpecifics(entry, limit = 5) {
+      if (!entry) return [];
+      let specifics = entry.specifics;
+      if (state.specific) specifics = specifics.filter(item => item === state.specific);
+      if (state.search) {
+        const q = state.search.toLocaleLowerCase('fr');
+        const matched = specifics.filter(item => item.toLocaleLowerCase('fr').includes(q));
+        if (matched.length) specifics = matched;
+      }
+      return specifics.slice(0, limit);
+    }
+
+    function progressionFor(entry) {
+      return progressionIndex[groupKey(entry)] || {};
+    }
+
+    function progressionSentence(group) {
+      const present = GRADES.filter(grade => group.byGrade[grade]);
+      const counts = present.map(grade => `${grade} : ${group.byGrade[grade].specifics.length} objectif${group.byGrade[grade].specifics.length > 1 ? 's' : ''}`);
+      if (present.length === 3) return `Progression continue sur les trois niveaux. ${counts.join(' · ')}.`;
+      return `Présence partielle dans le programme extrait : ${present.join(', ') || 'aucun niveau'}. ${counts.join(' · ')}.`;
+    }
+
+    function levelPanel(entry, grade, currentGrade = '') {
+      if (!entry) {
+        return `<section class="level-panel"><h4>${grade}</h4><p class="muted">Pas d'entrée équivalente isolée pour ce niveau.</p></section>`;
+      }
+      const items = relevantSpecifics(entry, 4);
+      return `
+        <section class="level-panel ${grade === currentGrade ? 'current' : ''}">
+          <h4>${grade}</h4>
+          ${items.length
+            ? `<ul class="mini-list">${items.map(item => `<li>${highlight(item)}</li>`).join('')}</ul>`
+            : '<p class="muted">Consultez le texte officiel extrait.</p>'}
+        </section>
+      `;
+    }
+
+    function highlight(text) {
+      const escaped = escapeHtml(text);
+      if (!state.search) return escaped;
+      const needle = state.search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      return escaped.replace(new RegExp(`(${needle})`, 'gi'), '<mark>$1</mark>');
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+      }[char]));
+    }
+
+    function renderResults() {
+      const rows = DATA.filter(matches);
+      el('resultCount').textContent = `${rows.length} résultat${rows.length > 1 ? 's' : ''}`;
+      el('results').classList.remove('view-hidden');
+      el('overviewResults').classList.add('view-hidden');
+      if (!rows.length) {
+        el('results').innerHTML = '<div class="empty">Aucune compétence ne correspond aux filtres sélectionnés.</div>';
+        return;
+      }
+      el('results').innerHTML = rows.map(entry => `
+        <article class="card">
+          <div class="meta">
+            <span class="tag ${entry.subject === 'Mathématiques' ? 'math' : ''}">${escapeHtml(entry.subject)}</span>
+            <span class="tag grade">${escapeHtml(entry.grade)}</span>
+            <span class="tag domain">${escapeHtml(entry.domain)}</span>
+          </div>
+          <h2>${highlight(entry.globalCompetency)}</h2>
+          <ul class="specifics">
+            ${entry.specifics.length
+              ? entry.specifics.map(item => `<li>${highlight(item)}</li>`).join('')
+              : '<li>Objectifs spécifiques non isolés automatiquement ; consultez le texte officiel extrait.</li>'}
+          </ul>
+          <section class="progression">
+            <h3>Progression CP · CE1 · CE2</h3>
+            <div class="progression-grid">
+              ${GRADES.map(grade => levelPanel(progressionFor(entry)[grade], grade, entry.grade)).join('')}
+            </div>
+          </section>
+        </article>
+      `).join('');
+    }
+
+    function renderOverview() {
+      const groups = getOverviewGroups().filter(matchesOverview);
+      el('resultCount').textContent = `${groups.length} synthèse${groups.length > 1 ? 's' : ''}`;
+      el('results').classList.add('view-hidden');
+      el('overviewResults').classList.remove('view-hidden');
+      if (!groups.length) {
+        el('overviewResults').innerHTML = '<div class="empty">Aucune synthèse ne correspond aux filtres sélectionnés.</div>';
+        return;
+      }
+      el('overviewResults').innerHTML = groups.map(group => `
+        <article class="overview-card">
+          <div class="overview-top">
+            <div>
+              <div class="meta">
+                <span class="tag ${group.subject === 'Mathématiques' ? 'math' : ''}">${escapeHtml(group.subject)}</span>
+                <span class="tag domain">${escapeHtml(group.domain)}</span>
+              </div>
+              <h2>${highlight(group.globalCompetency)}</h2>
+              <p class="analysis">${escapeHtml(progressionSentence(group))}</p>
+            </div>
+            <button type="button" data-overview-key="${escapeHtml(group.key)}">Voir en détail</button>
+          </div>
+          <div class="overview-grid">
+            ${GRADES.map(grade => levelPanel(group.byGrade[grade], grade, state.grade)).join('')}
+          </div>
+        </article>
+      `).join('');
+      el('overviewResults').querySelectorAll('button[data-overview-key]').forEach(button => {
+        button.addEventListener('click', () => {
+          const group = getOverviewGroups().find(item => item.key === button.dataset.overviewKey);
+          if (!group) return;
+          state.view = 'detail';
+          state.subject = group.subject;
+          state.domain = group.domain;
+          state.global = group.globalCompetency;
+          state.specific = '';
+          refreshOptions();
+          renderCurrentView();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    }
+
+    function renderCurrentView() {
+      viewButtons.detail.classList.toggle('active', state.view === 'detail');
+      viewButtons.overview.classList.toggle('active', state.view === 'overview');
+      if (state.view === 'overview') renderOverview();
+      else renderResults();
+    }
+
+    function setView(view) {
+      state.view = view;
+      refreshOptions();
+      renderCurrentView();
+    }
+
+    function renderTree() {
+      const grouped = {};
+      DATA.forEach(entry => {
+        grouped[entry.subject] ??= {};
+        grouped[entry.subject][entry.grade] ??= {};
+        grouped[entry.subject][entry.grade][entry.domain] ??= [];
+        grouped[entry.subject][entry.grade][entry.domain].push(entry);
+      });
+      el('tree').innerHTML = Object.entries(grouped).map(([subject, byGrade]) => `
+        <details open>
+          <summary>${escapeHtml(subject)}</summary>
+          ${Object.entries(byGrade).map(([grade, byDomain]) => `
+            <details>
+              <summary>${escapeHtml(grade)}</summary>
+              ${Object.entries(byDomain).map(([domain, entries]) => `
+                <details>
+                  <summary>${escapeHtml(domain)}</summary>
+                  ${entries.map(entry => `<button type="button" data-subject="${escapeHtml(subject)}" data-grade="${escapeHtml(grade)}" data-domain="${escapeHtml(domain)}" data-global="${escapeHtml(entry.globalCompetency)}">${escapeHtml(entry.globalCompetency)}</button>`).join('')}
+                </details>
+              `).join('')}
+            </details>
+          `).join('')}
+        </details>
+      `).join('');
+      el('tree').querySelectorAll('button').forEach(button => {
+        button.addEventListener('click', () => {
+          state.subject = button.dataset.subject;
+          state.grade = button.dataset.grade;
+          state.domain = button.dataset.domain;
+          state.global = button.dataset.global;
+          state.specific = '';
+          state.search = '';
+          controls.search.value = '';
+          refreshOptions();
+          renderCurrentView();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    }
+
+    Object.entries(controls).forEach(([key, control]) => {
+      control.addEventListener(key === 'search' ? 'input' : 'change', () => {
+        state[key] = control.value;
+        refreshOptions();
+        renderCurrentView();
+      });
+    });
+    viewButtons.detail.addEventListener('click', () => {
+      setView('detail');
+    });
+    viewButtons.overview.addEventListener('click', () => {
+      setView('overview');
+    });
+    el('resetFilters').addEventListener('click', () => {
+      const currentView = state.view;
+      Object.keys(state).forEach(key => state[key] = '');
+      state.view = currentView;
+      controls.search.value = '';
+      refreshOptions();
+      renderCurrentView();
+    });
+    el('printButton').addEventListener('click', () => window.print());
+
+    refreshOptions();
+    renderTree();
+    renderCurrentView();
+  </script>
+</body>
+</html>
