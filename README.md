@@ -13,4 +13,6 @@ Application HTML statique pour explorer les programmes 2025 de français et de m
 
 Le fichier `index.html` est autonome et peut être publié avec GitHub Pages.
 
-Le script `tools/generate_programmes_2025_html.py` sert à régénérer l'application depuis les PDF locaux.
+Les fichiers `reference/francais.md` et `reference/mathematiques.md` servent de source relue pour les compétences affichées.
+
+Le script `tools/generate_programmes_2025_html.py` sert à régénérer l'application depuis ces fichiers Markdown.

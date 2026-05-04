@@ -10,6 +10,7 @@ from pypdf import PdfReader
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = ROOT.parent / "programmes-cycle-2-rentree-2025"
 OUTPUT = ROOT / "index.html"
+REFERENCE_DIR = ROOT / "reference"
 
 GRADES = {
     "Cours préparatoire": "CP",
@@ -182,25 +183,26 @@ def extract_specific_objectives(section_text: str) -> list[str]:
     split_at = 76
 
     for raw_line in section_text.splitlines():
-        if "Objectifs d’apprentissage" in raw_line:
+        if re.search(r"\bObjectifs(?: d’apprentissage)?\b", raw_line):
             in_objectives = True
             if "Exemples de réussite" in raw_line:
                 split_at = raw_line.index("Exemples de réussite")
             continue
-        if not in_objectives:
-            continue
-
         left = raw_line[:split_at].strip()
         if not left:
             continue
         if left.startswith("Exemples de réussite"):
             continue
+        if not in_objectives and re.match(r"^-\s*", left):
+            in_objectives = True
+        if not in_objectives:
+            continue
         if left in {"En fin de période 1", "En milieu d’année", "En fin d’année", "Dès le début de l’année", "En cours d’année", "Tout au long de l’année"}:
             continue
-        if left.startswith("- "):
+        if re.match(r"^-\s*", left):
             if current:
                 objectives.append(normalize_objective(current))
-            current = left[2:].strip()
+            current = re.sub(r"^-\s*", "", left).strip()
         elif current and not left.startswith(("", "")):
             current += " " + left
 
@@ -250,14 +252,76 @@ def normalize_objective(value: str) -> str:
     value = re.sub(r"\s+", " ", value)
     value = value.replace(" - ", "-")
     value = value.replace("  ", " ")
+    value = re.sub(r"\s+([,.;:!?])", r"\1", value)
+    value = re.sub(r"\b([A-Z])\s+(fonction|assurant|d’un|nombre|inférieurs|de cubes|produire)\b", r"\2", value)
     return value.strip()
 
 
 def build_data() -> list[dict]:
+    markdown_data = load_reference_markdown()
+    if markdown_data:
+        return markdown_data
+
     all_entries: list[dict] = []
     for program in PROGRAMS:
         all_entries.extend(split_entries(program))
     return all_entries
+
+
+def load_reference_markdown() -> list[dict]:
+    files = [
+        REFERENCE_DIR / "francais.md",
+        REFERENCE_DIR / "mathematiques.md",
+    ]
+    if not all(path.exists() for path in files):
+        return []
+
+    entries: list[dict] = []
+    for path in files:
+        subject = ""
+        domain = ""
+        grade = ""
+        global_competency = ""
+        specifics: list[str] = []
+
+        def flush() -> None:
+            nonlocal specifics
+            if subject and domain and grade and global_competency and specifics:
+                entries.append({
+                    "subject": subject,
+                    "domain": domain,
+                    "grade": grade,
+                    "globalCompetency": global_competency,
+                    "specifics": specifics,
+                })
+            specifics = []
+
+        for raw_line in path.read_text(encoding="utf-8").splitlines():
+            line = raw_line.strip()
+            if not line:
+                continue
+            if line.startswith("# "):
+                flush()
+                subject = line[2:].strip()
+                domain = ""
+                grade = ""
+                global_competency = ""
+            elif line.startswith("## "):
+                flush()
+                domain = line[3:].strip()
+                grade = ""
+                global_competency = ""
+            elif line.startswith("### "):
+                flush()
+                title = line[4:].strip()
+                if " — " in title:
+                    grade, global_competency = [part.strip() for part in title.split(" — ", 1)]
+                else:
+                    grade, global_competency = "", title
+            elif line.startswith("- "):
+                specifics.append(line[2:].strip())
+        flush()
+    return entries
 
 
 def render_html(data: list[dict]) -> str:
@@ -929,7 +993,7 @@ def render_html(data: list[dict]) -> str:
           <h4>${{grade}}</h4>
           ${{items.length
             ? `<ul class="mini-list">${{items.map(item => `<li>${{highlight(item)}}</li>`).join('')}}</ul>`
-            : '<p class="muted">Consultez le texte officiel extrait.</p>'}}
+            : '<p class="muted">Aucune compétence spécifique renseignée dans la source de référence.</p>'}}
         </section>
       `;
     }}
@@ -967,7 +1031,7 @@ def render_html(data: list[dict]) -> str:
           <ul class="specifics">
             ${{entry.specifics.length
               ? entry.specifics.map(item => `<li>${{highlight(item)}}</li>`).join('')
-              : '<li>Objectifs spécifiques non isolés automatiquement ; consultez le texte officiel extrait.</li>'}}
+              : '<li>Aucune compétence spécifique renseignée dans la source de référence.</li>'}}
           </ul>
           <section class="progression">
             <h3>Progression CP · CE1 · CE2</h3>
