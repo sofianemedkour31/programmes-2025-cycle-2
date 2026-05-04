@@ -7,9 +7,9 @@ from pathlib import Path
 from pypdf import PdfReader
 
 
-ROOT = Path(__file__).resolve().parent
-SOURCE_DIR = ROOT / "programmes-cycle-2-rentree-2025"
-OUTPUT = ROOT / "outputs" / "programmes-2025-cycle-2-francais-maths.html"
+ROOT = Path(__file__).resolve().parents[1]
+SOURCE_DIR = ROOT.parent / "programmes-cycle-2-rentree-2025"
+OUTPUT = ROOT / "index.html"
 
 GRADES = {
     "Cours préparatoire": "CP",
@@ -398,12 +398,25 @@ def render_html(data: list[dict]) -> str:
       gap: 24px;
       padding: 0 clamp(18px, 4vw, 52px) 44px;
       align-items: start;
+      transition: grid-template-columns .28s ease, gap .28s ease;
+    }}
+    body.sidebar-collapsed main {{
+      grid-template-columns: 0 minmax(0, 1fr);
+      gap: 0;
     }}
     aside {{
       position: sticky;
       top: 16px;
       display: grid;
       gap: 16px;
+      overflow: hidden;
+      transition: opacity .22s ease, transform .24s ease, visibility .22s ease;
+    }}
+    body.sidebar-collapsed aside {{
+      opacity: 0;
+      transform: translateX(-18px);
+      visibility: hidden;
+      pointer-events: none;
     }}
     .panel, .card, .overview-card {{
       background: var(--panel);
@@ -541,6 +554,16 @@ def render_html(data: list[dict]) -> str:
       font-weight: 820;
       padding-left: 4px;
     }}
+    .toolbar-actions {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }}
+    .ghost-action {{
+      background: rgba(255,255,255,.58);
+      color: #344054;
+    }}
     .results {{
       display: grid;
       gap: 16px;
@@ -673,10 +696,13 @@ def render_html(data: list[dict]) -> str:
       -webkit-backdrop-filter: var(--blur);
     }}
     @media (max-width: 980px) {{
-      main {{ grid-template-columns: 1fr; }}
+      main, body.sidebar-collapsed main {{ grid-template-columns: 1fr; gap: 16px; }}
       aside {{ position: static; }}
+      body.sidebar-collapsed aside {{ display: none; }}
       .tree {{ max-height: none; }}
       .toolbar {{ position: static; align-items: flex-start; flex-direction: column; }}
+      .toolbar-actions {{ width: 100%; justify-content: stretch; }}
+      .toolbar-actions button {{ flex: 1; }}
     }}
     @media (max-width: 720px) {{
       header {{ padding: 16px; }}
@@ -739,7 +765,10 @@ def render_html(data: list[dict]) -> str:
     <section>
       <div class="toolbar">
         <div class="count" id="resultCount"></div>
-        <button id="printButton" class="primary-action" type="button">Imprimer / exporter en PDF</button>
+        <div class="toolbar-actions">
+          <button id="toggleSidebarButton" class="ghost-action" type="button" aria-expanded="true">Masquer les filtres</button>
+          <button id="printButton" class="primary-action" type="button">Imprimer / exporter en PDF</button>
+        </div>
       </div>
       <div id="results" class="results"></div>
       <div id="overviewResults" class="results view-hidden"></div>
@@ -1058,6 +1087,12 @@ def render_html(data: list[dict]) -> str:
     }});
     viewButtons.overview.addEventListener('click', () => {{
       setView('overview');
+    }});
+    el('toggleSidebarButton').addEventListener('click', () => {{
+      const collapsed = document.body.classList.toggle('sidebar-collapsed');
+      const button = el('toggleSidebarButton');
+      button.textContent = collapsed ? 'Afficher les filtres' : 'Masquer les filtres';
+      button.setAttribute('aria-expanded', String(!collapsed));
     }});
     el('resetFilters').addEventListener('click', () => {{
       const currentView = state.view;
